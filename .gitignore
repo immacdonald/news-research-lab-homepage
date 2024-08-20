@@ -1,0 +1,13 @@
+# Node 
+node_modules/
+.npm
+.eslintcache
+.node_repl_history
+*.tgz
+.yarn-integrity
+
+# macOS
+.DS_STORE
+
+# React Vite build folder 
+/dist

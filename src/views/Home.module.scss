@@ -1,0 +1,19 @@
+.page {
+    margin-top: -64px !important;
+
+    &.header {
+        padding-top: 0 !important;
+    }
+}
+
+.section {
+    height: 600px;
+    display: flex;
+    align-items: center;
+}
+
+.callout {
+    border-left: var(--color-primary) 10px solid;
+    padding: $lg;
+    margin-bottom: calc(#{$xxl} * 2);
+}
