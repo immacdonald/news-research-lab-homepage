@@ -4,16 +4,14 @@ import { Footer, Header } from '@components/page';
 
 const NotFound: FC = () => {
     return (
-        <Page title="NEWS Research Lab" header={<Header />} footer={<Footer />}>
-            <Section variant="floating">
+        <Page title="NEWS Research Lab" header={<Header />} headerSpace="pad" footer={<Footer />}>
+            <Section variant="floating" hasBackground>
                 <Column>
-                    <Heading title="Not Found" align="center" />
+                    <Heading title="Not Found" subtitle="404 Page Not Found Error" align="center" />
                 </Column>
-                <Text align="center" marginBottom>
-                    Unfortunately, the page you entered cannot be found.
-                </Text>
+                <Text marginBottom>Unfortunately, the page you selected cannot be reached. Please try reloading and checking the URL you have searched to confirm it is correctly spelled.</Text>
                 <Row>
-                    <Button context="primary" label="Return Home" link="/" visual="filled" />
+                    <Button label="Return Home" link="/" visual="filled" context="primary" />
                 </Row>
             </Section>
         </Page>

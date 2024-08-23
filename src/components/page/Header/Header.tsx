@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import { Button, MoonFilledIcon, SunFilledIcon, useResponsiveContext } from 'phantom-library';
+import { FC, useMemo } from 'react';
+import { Button, MenuIcon, Popover, useResponsiveContext } from 'phantom-library';
 import clsx from 'clsx';
 import style from './Header.module.scss';
 
@@ -8,7 +8,7 @@ interface HeaderProps {
 }
 
 const Header: FC<HeaderProps> = ({ inline = false }) => {
-    const { theme, toggleTheme } = useResponsiveContext();
+    const { windowSize } = useResponsiveContext();
 
     const pages = [
         { label: 'Home', link: '/' },
@@ -19,6 +19,19 @@ const Header: FC<HeaderProps> = ({ inline = false }) => {
         { label: 'Blog', link: '/' }
     ];
 
+    const mobileHeader = windowSize.width < 900;
+
+    const navContent = useMemo(
+        () => (
+            <nav className={style.links}>
+                {pages.map((page, index: number) => (
+                    <Button label={page.label} link={page.link} visual={mobileHeader ? 'ghost' : 'text'} key={index} />
+                ))}
+            </nav>
+        ),
+        [mobileHeader]
+    );
+
     const headerClasses = clsx(style.header, {
         [style.inline]: inline
     });
@@ -28,13 +41,13 @@ const Header: FC<HeaderProps> = ({ inline = false }) => {
             <div className={style.content}>
                 <Button visual="text" label="NEWS Lab" link="/" />
                 <div className={style.navigation}>
-                    <nav className={style.links}>
-                        {pages.map((page, index: number) => (
-                            <Button label={page.label} visual="text" key={index} />
-                        ))}
-
-                        <Button rounded visual="text" onClick={() => toggleTheme()} Icon={theme == 'light' ? SunFilledIcon : MoonFilledIcon} />
-                    </nav>
+                    {mobileHeader ? (
+                        <Popover direction="bottom" content={navContent}>
+                            <Button visual="ghost" Icon={MenuIcon} />
+                        </Popover>
+                    ) : (
+                        navContent
+                    )}
                 </div>
             </div>
         </header>

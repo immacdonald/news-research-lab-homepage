@@ -12,8 +12,8 @@ const Home: FC = () => {
     const pageClasses = clsx(style.page, { [style.header]: inlineHeader });
 
     return (
-        <Page title="NEWS Research Lab" header={<Header inline={inlineHeader} />} footer={<Footer />} className={pageClasses}>
-            <Section background={newsGraphDark} className={style.section}>
+        <Page title="NEWS Research Lab" header={<Header inline={inlineHeader} />} headerSpace={inlineHeader ? 'overlap' : undefined} footer={<Footer />} className={pageClasses}>
+            <Section backgroundImage={newsGraphDark} className={style.hero} context="dark">
                 <Heading title="News, Web, & Social Media (NEWS) Research Lab" subtitle="NEWS Lab @ William & Mary" />
             </Section>
             <Section>
