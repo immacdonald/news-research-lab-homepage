@@ -10,7 +10,6 @@ While developing the website it can be ran locally on port `5173` using:
 npm run dev
 ```
 
-
 ## Building for Production
 
 To build a production version of the website using Docker perform:

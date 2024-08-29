@@ -12,4 +12,4 @@ RUN npm run build
 FROM docker.io/library/nginx:stable-alpine
 
 COPY --from=build /app/dist /usr/share/nginx/html
-COPY docker/nginx/default.conf.template /etc/nginx/templates/default.conf.template
+COPY nginx/default.conf.template /etc/nginx/templates/default.conf.template

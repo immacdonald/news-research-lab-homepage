@@ -1,13 +1,10 @@
 import { FC, useMemo } from 'react';
-import { Button, MenuIcon, Popover, useResponsiveContext } from 'phantom-library';
-import clsx from 'clsx';
+import { Button, MenuIcon, Popover, SimpleDynamicHeader, DynamicHeaderProps, useResponsiveContext } from 'phantom-library';
 import style from './Header.module.scss';
 
-interface HeaderProps {
-    inline?: boolean;
-}
+interface HeaderProps extends DynamicHeaderProps {}
 
-const Header: FC<HeaderProps> = ({ inline = false }) => {
+const Header: FC<HeaderProps> = ({ ...props }) => {
     const { windowSize } = useResponsiveContext();
 
     const pages = [
@@ -32,12 +29,8 @@ const Header: FC<HeaderProps> = ({ inline = false }) => {
         [mobileHeader]
     );
 
-    const headerClasses = clsx(style.header, {
-        [style.inline]: inline
-    });
-
     return (
-        <header className={headerClasses} data-context={inline ? 'dark' : undefined}>
+        <SimpleDynamicHeader {...props}>
             <div className={style.content}>
                 <Button visual="text" label="NEWS Lab" link="/" />
                 <div className={style.navigation}>
@@ -50,7 +43,7 @@ const Header: FC<HeaderProps> = ({ inline = false }) => {
                     )}
                 </div>
             </div>
-        </header>
+        </SimpleDynamicHeader>
     );
 };
 

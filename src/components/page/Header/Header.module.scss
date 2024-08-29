@@ -1,42 +1,19 @@
-.header {
-    @include responsive-width;
-
+.content {
     display: flex;
     align-items: center;
-    justify-content: center;
-    height: var(--header-height) !important;
-    z-index: 10;
-    top: 0;
-    left: 0;
+    width: 100%;
+    padding: 0 $lg;
 
-    .content {
+    .navigation {
         display: flex;
         align-items: center;
-        width: 100%;
-        padding: 0 $lg;
-
-        .navigation {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-left: auto;
-        }
-
-        .links {
-            display: flex;
-            align-items: center;
-            gap: $xs;
-        }
+        justify-content: space-between;
+        margin-left: auto;
     }
 
-    &.inline {
-        background: none;
-        border: none;
-    }
-
-    &:not(.inline) {
-        background-color: var(--color-surface-foreground);
-        border-bottom: var(--border-light);
-        position: fixed;
+    .links {
+        display: flex;
+        align-items: center;
+        gap: $xs;
     }
 }

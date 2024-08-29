@@ -1,18 +1,12 @@
 import { FC } from 'react';
-import { Heading, Page, Section, Text, useScrollDistance } from 'phantom-library';
-import clsx from 'clsx';
+import { Heading, Page, Section, Text } from 'phantom-library';
 import { newsGraphDark } from '@assets';
-import { Footer, Header } from '@components/page';
+import { Header } from '@components/page';
 import style from './Home.module.scss';
 
 const Home: FC = () => {
-    const scroll = useScrollDistance();
-    const inlineHeader = scroll < 300;
-
-    const pageClasses = clsx(style.page, { [style.header]: inlineHeader });
-
     return (
-        <Page title="NEWS Research Lab" header={<Header inline={inlineHeader} />} headerSpace={inlineHeader ? 'overlap' : undefined} footer={<Footer />} className={pageClasses}>
+        <Page title="NEWS Research Lab" header={<Header inline pageSpace="overlap" context="dark" dynamicSettings={{ enabled: true, hasBackground: true, inline: false }} />}>
             <Section backgroundImage={newsGraphDark} className={style.hero} context="dark">
                 <Heading title="News, Web, & Social Media (NEWS) Research Lab" subtitle="NEWS Lab @ William & Mary" />
             </Section>
