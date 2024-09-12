@@ -6,6 +6,11 @@
 
 .callout {
     border-left: var(--color-primary) 8px solid;
-    padding: $lg;
-    margin-bottom: calc(#{$xxl} * 2);
+    padding-inline: $lg;
+    padding-block: $md;
+    margin-bottom: 8rem;
+}
+
+figure {
+    margin-bottom: 0 !important;
 }

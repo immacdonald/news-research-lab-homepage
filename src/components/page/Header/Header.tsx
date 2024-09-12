@@ -9,11 +9,10 @@ const Header: FC<HeaderProps> = ({ ...props }) => {
 
     const pages = [
         { label: 'Home', link: '/' },
-        { label: 'Students', link: '/' },
-        { label: 'Research', link: '/' },
-        { label: 'Publications', link: '/' },
-        { label: 'Tools & Datasets', link: '/' },
-        { label: 'Blog', link: '/' }
+        { label: 'About', link: '/#about' },
+        { label: 'Students', link: '/#students' },
+        { label: 'Faculty', link: '/#faculty' },
+        { label: 'Tools & Datasets', link: '/#tools' }
     ];
 
     const mobileHeader = windowSize.width < 900;
@@ -22,7 +21,9 @@ const Header: FC<HeaderProps> = ({ ...props }) => {
         () => (
             <nav className={style.links}>
                 {pages.map((page, index: number) => (
-                    <Button label={page.label} link={page.link} visual={mobileHeader ? 'ghost' : 'text'} key={index} />
+                    <Button link={page.link} visual={mobileHeader ? 'ghost' : 'text'} key={index}>
+                        {page.label}
+                    </Button>
                 ))}
             </nav>
         ),
@@ -32,7 +33,9 @@ const Header: FC<HeaderProps> = ({ ...props }) => {
     return (
         <SimpleDynamicHeader {...props}>
             <div className={style.content}>
-                <Button visual="text" label="NEWS Lab" link="/" />
+                <Button visual="text" link="/">
+                    NEWS Lab
+                </Button>
                 <div className={style.navigation}>
                     {mobileHeader ? (
                         <Popover direction="bottom" content={navContent}>
