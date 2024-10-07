@@ -3,9 +3,12 @@ import { Column, Heading, Page, Row, Section, StyledImage, Typography } from 'ph
 import { Link } from 'react-router-dom';
 import { newsGraphDark, PortraitAlexanderNwala, PortraitGanganiAriyarathne, PortraitGreatnessEmmanuelKing, PortraitIsuruAriyarathne, PotraitIanMacDonald } from '@assets';
 import { Header } from '@components/page';
+import { useAnalytics } from '@hooks';
 import style from './Home.module.scss';
 
 const Home: FC = () => {
+    useAnalytics();
+
     return (
         <Page title="NEWS Research Lab" header={<Header inline pageSpace="overlap" context="dark" dynamicSettings={{ enabled: true, hasBackground: true, inline: false }} />}>
             <Section backgroundImage={newsGraphDark} className={style.hero} context="dark" parallax id="home">

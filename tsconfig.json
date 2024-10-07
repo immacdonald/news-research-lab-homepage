@@ -9,6 +9,7 @@
             "@assets": ["src/assets"],
             "@components/*": ["./src/components/*"],
             "@config": ["./src/config"],
+            "@hooks": ["src/hooks"],
             "@views": ["./src/views"]
         },
         "types": ["vite-plugin-svgr/client"]
