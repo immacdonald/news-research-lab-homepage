@@ -6,7 +6,7 @@ import 'phantom-library/styles';
 import './styles/core/index.module.scss';
 
 const tagManagerArgs = {
-    gtmId: 'GTM-MRT6X4TR;'
+    gtmId: 'GTM-MRT6X4TR'
 };
 
 TagManager.initialize(tagManagerArgs);
