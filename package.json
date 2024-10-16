@@ -16,6 +16,7 @@
         "format": "npm run lint:fix && npm run stylelint:fix && npm run prettier:fix"
     },
     "dependencies": {
+        "@sooro-io/react-gtm-module": "^3.0.0",
         "clsx": "^2.1.1",
         "phantom-library": "0.17.1",
         "react": "^18.2.0",

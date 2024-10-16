@@ -1,11 +1,19 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { Column, Heading, Page, Row, Section, StyledImage, Typography } from 'phantom-library';
 import { Link } from 'react-router-dom';
+import TagManager from '@sooro-io/react-gtm-module';
 import { newsGraphDark, PortraitAlexanderNwala, PortraitGanganiAriyarathne, PortraitGreatnessEmmanuelKing, PortraitIsuruAriyarathne, PotraitIanMacDonald } from '@assets';
 import { Header } from '@components/page';
 import style from './Home.module.scss';
 
 const Home: FC = () => {
+    useEffect(() => {
+        TagManager.dataLayer({
+            dataLayer: {
+                event: 'home_visit'
+            }
+        });
+    }, []);
     return (
         <Page title="NEWS Research Lab" header={<Header inline pageSpace="overlap" context="dark" dynamicSettings={{ enabled: true, hasBackground: true, inline: false }} />}>
             <Section backgroundImage={newsGraphDark} className={style.hero} context="dark" parallax id="home">
