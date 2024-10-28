@@ -3,6 +3,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import { FC } from 'react';
 import { Footer, Header } from '@components/page';
 import { Home, NotFound } from '@views';
+import { useAnalytics } from './hooks/useAnalytics';
 
 const styleConfiguration: StyleConfiguration = {
     page: {
@@ -11,13 +12,19 @@ const styleConfiguration: StyleConfiguration = {
     }
 };
 
+const RoutedApp: FC = () => {
+    useAnalytics();
+
+    return (
+        <StyledApp anchors modals banners configuration={styleConfiguration}>
+            <Outlet />
+        </StyledApp>
+    );
+};
+
 const router = createBrowserRouter([
     {
-        element: (
-            <StyledApp anchors modals banners configuration={styleConfiguration}>
-                <Outlet />
-            </StyledApp>
-        ),
+        element: <RoutedApp />,
         children: [
             {
                 path: '/',
