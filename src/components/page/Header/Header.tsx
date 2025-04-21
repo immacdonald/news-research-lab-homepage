@@ -1,5 +1,7 @@
-import { FC, useMemo } from 'react';
-import { Button, MenuIcon, Popover, SimpleDynamicHeader, DynamicHeaderProps, useResponsiveContext } from 'phantom-library';
+import type { DynamicHeaderProps } from 'phantom-library';
+import type { FC } from 'react';
+import { useMemo } from 'react';
+import { Button, MenuIcon, Popover, useResponsiveContext, DynamicHeader, StyledLink } from 'phantom-library';
 import style from './Header.module.scss';
 
 interface HeaderProps extends DynamicHeaderProps {}
@@ -20,33 +22,39 @@ const Header: FC<HeaderProps> = ({ ...props }) => {
     const navContent = useMemo(
         () => (
             <nav className={style.links}>
-                {pages.map((page, index: number) => (
-                    <Button link={page.link} visual={mobileHeader ? 'ghost' : 'text'} key={index}>
-                        {page.label}
-                    </Button>
-                ))}
+                {pages.map((page, index: number) => {
+                    return mobileHeader ? (
+                        <Button link={page.link} variant="ghost" key={index}>
+                            {page.label}
+                        </Button>
+                    ) : (
+                        <StyledLink to={page.link} base="bold" hover="subtle" key={index}>
+                            {page.label}
+                        </StyledLink>
+                    );
+                })}
             </nav>
         ),
         [mobileHeader]
     );
 
     return (
-        <SimpleDynamicHeader {...props}>
+        <DynamicHeader {...props}>
             <div className={style.content}>
-                <Button visual="text" link="/">
+                <StyledLink to="/" base="bold" hover="subtle">
                     NEWS Lab
-                </Button>
+                </StyledLink>
                 <div className={style.navigation}>
                     {mobileHeader ? (
                         <Popover direction="bottom" content={navContent}>
-                            <Button visual="ghost" Icon={MenuIcon} />
+                            <Button variant="text" Icon={MenuIcon} />
                         </Popover>
                     ) : (
                         navContent
                     )}
                 </div>
             </div>
-        </SimpleDynamicHeader>
+        </DynamicHeader>
     );
 };
 

@@ -14,3 +14,7 @@
     --font-body: #{$font};
     --font-heading: #{$font};
 }
+
+figure {
+    margin-bottom: 0 !important;
+}

@@ -1,23 +1,18 @@
-import { StyleConfiguration, StyledApp } from 'phantom-library';
+import type { FC } from 'react';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
-import { FC } from 'react';
+import { StyledApp } from 'phantom-library';
 import { Footer, Header } from '@components/page';
 import { Home, NotFound } from '@views';
 import { useAnalytics } from './hooks/useAnalytics';
-
-const styleConfiguration: StyleConfiguration = {
-    page: {
-        defaultHeader: <Header hasBackground pageSpace="pad" />,
-        defaultFooter: <Footer />
-    }
-};
 
 const RoutedApp: FC = () => {
     useAnalytics();
 
     return (
-        <StyledApp anchors modals banners configuration={styleConfiguration}>
+        <StyledApp rootId="root" fillViewport>
+            <Header inline hasBackground dynamicSettings={{ enabled: true, hasBackground: true, inline: false }} />
             <Outlet />
+            <Footer />
         </StyledApp>
     );
 };

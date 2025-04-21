@@ -1,25 +1,29 @@
-import { Button, Column, Heading, Page, Row, Section, Typography } from 'phantom-library';
-import { FC } from 'react';
+import type { FC } from 'react';
+import { Box, Button, Heading, Row, Section, tokens, Typography } from 'phantom-library';
+import { Layout } from '@components/Layout';
+import styles from './View.module.scss';
 
 const NotFound: FC = () => {
     return (
-        <Page title="NEWS Research Lab">
-            <Section variant="floating" hasBackground>
-                <Column>
-                    <Heading subtitle="404 Page Not Found Error" align="center">
-                        Not Found
-                    </Heading>
-                </Column>
-                <Typography.Paragraph>
-                    Unfortunately, the page you selected cannot be reached. Please try reloading and checking the URL you have searched to confirm it is correctly spelled.
-                </Typography.Paragraph>
+        <Layout>
+            <Section background="container">
                 <Row>
-                    <Button link="/" visual="filled" context="primary">
-                        Return Home
-                    </Button>
+                    <Box background="content" border padding={tokens.space.lg} className={styles.box}>
+                        <Heading subheading="404 Page Not Found Error" align="center" style={{ marginBottom: tokens.space.lg }}>
+                            Not Found
+                        </Heading>
+                        <Typography.Paragraph>
+                            Unfortunately, the page you selected cannot be reached. Please try reloading and checking the URL you have searched to confirm it is correctly spelled.
+                        </Typography.Paragraph>
+                        <Row>
+                            <Button link="/" variant="filled" context="primary">
+                                Return Home
+                            </Button>
+                        </Row>
+                    </Box>
                 </Row>
             </Section>
-        </Page>
+        </Layout>
     );
 };
 

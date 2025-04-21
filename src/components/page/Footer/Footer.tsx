@@ -1,12 +1,17 @@
-import { FC } from 'react';
-import { Link } from 'react-router-dom';
-import { Typography, SimpleFooter, Flex, Column, Row } from 'phantom-library';
+import type { FC } from 'react';
+import { Typography, Flex, Column, Row, StyledFooter, tokens, StyledLink } from 'phantom-library';
 
 const Footer: FC = () => {
     return (
-        <SimpleFooter theme="dark">
-            <Flex flex={{ base: 'row', xs: 'column' }} gap={{ base: '64px', xs: '8px' }} verticalAlign="start">
-                <Column align="start" gap="0">
+        <StyledFooter theme="dark">
+            <Flex
+                flex={{ base: 'row', xs: 'column' }}
+                gap={{ base: tokens.space.xl, xs: tokens.space.md }}
+                style={{marginBottom: tokens.space.sm}}
+                verticalAlign="start"
+                block
+            >
+                <Column align="start" block>
                     <Typography.Text>
                         <b>About</b>
                     </Typography.Text>
@@ -14,29 +19,37 @@ const Footer: FC = () => {
                         <i>NEWS Lab studies the web as an entity with a focus on (local) news and vectors of disinformation on social media.</i>
                     </Typography.Text>
                 </Column>
-                <Column align="start" gap="0">
+                <Column align="start" block>
                     <Typography.Text>
                         <b>Navigation</b>
                     </Typography.Text>
                     <Row>
-                        <Column align="start" gap="0">
-                            <Link to="/#about">About</Link>
-                            <Link to="/#students">Students</Link>
+                        <Column align="start" block>
+                            <StyledLink base={null} to="/#about">
+                                About
+                            </StyledLink>
+                            <StyledLink base={null} to="/#students">
+                                Students
+                            </StyledLink>
                         </Column>
-                        <Column align="start" gap="0">
-                            <Link to="/#faculty">Faculty</Link>
-                            <Link to="/#tools">Tools & Datasets</Link>
+                        <Column align="start" block>
+                            <StyledLink base={null} to="/#faculty">
+                                Faculty
+                            </StyledLink>
+                            <StyledLink base={null} to="/#tools">
+                                Tools & Datasets
+                            </StyledLink>
                         </Column>
                     </Row>
                 </Column>
             </Flex>
-            <Typography.Text styleLinks={false}>
+            <Typography.Text>
                 &copy; {new Date().getFullYear()}{' '}
-                <Link to="https://newsresearch.lab.wm.edu" target="_blank">
+                <StyledLink to="https://newsresearch.lab.wm.edu" external base={null}>
                     Willam & Mary NEWS Lab
-                </Link>
+                </StyledLink>
             </Typography.Text>
-        </SimpleFooter>
+        </StyledFooter>
     );
 };
 

@@ -1,8 +1,9 @@
 .content {
+    color: var(--color-text);
     display: flex;
     align-items: center;
     width: 100%;
-    padding: 0 $lg;
+    padding: 0 var(--space-lg);
 
     .navigation {
         display: flex;
@@ -14,6 +15,6 @@
     .links {
         display: flex;
         align-items: center;
-        gap: $xs;
+        gap: var(--space);
     }
 }

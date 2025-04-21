@@ -1,0 +1,16 @@
+.hero {
+    height: 600px;
+    display: flex;
+    align-items: center;
+}
+
+.callout {
+    border-left: var(--color-primary) 8px solid;
+    padding-inline: var(--space-lg);
+    padding-block: var(--space);
+    margin-block: var(--space-lg);
+}
+
+.box {
+    max-width: min(100%, 512px);
+}
