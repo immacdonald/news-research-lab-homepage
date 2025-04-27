@@ -1,13 +1,34 @@
 import type { DynamicHeaderProps } from 'phantom-library';
 import type { FC } from 'react';
-import { useMemo } from 'react';
-import { Button, MenuIcon, Popover, useResponsiveContext, DynamicHeader, StyledLink } from 'phantom-library';
+import { useCallback, useMemo, useRef, useState } from 'react';
+import { Button, MenuIcon, useResponsiveContext, DynamicHeader, StyledLink, tokens, pxToInt, orUndefined, useOutsideClick } from 'phantom-library';
 import style from './Header.module.scss';
 
 interface HeaderProps extends DynamicHeaderProps {}
 
+const sidebarDebounce = 500;
+
 const Header: FC<HeaderProps> = ({ ...props }) => {
     const { windowSize } = useResponsiveContext();
+    const ref = useRef<HTMLDivElement>(null);
+    const lastToggleTime = useRef<number>(0);
+    const [sidebarActive, setSidebarActive] = useState<boolean>(false);
+
+    const setSidebar = useCallback((state: boolean) => {
+        const now = Date.now();
+        if (now - lastToggleTime.current > sidebarDebounce) {
+            setSidebarActive(state);
+            lastToggleTime.current = now;
+        }
+    }, []);
+
+    useOutsideClick(ref, () => {
+        if (sidebarActive) {
+            setSidebar(false);
+        }
+    });
+
+    const mobileHeader = windowSize.width < pxToInt(tokens.screen.sm);
 
     const pages = [
         { label: 'Home', link: '/' },
@@ -17,24 +38,15 @@ const Header: FC<HeaderProps> = ({ ...props }) => {
         { label: 'Tools & Datasets', link: '/#tools' }
     ];
 
-    const mobileHeader = windowSize.width < 900;
-
     const navContent = useMemo(
-        () => (
-            <nav className={style.links}>
-                {pages.map((page, index: number) => {
-                    return mobileHeader ? (
-                        <Button link={page.link} variant="ghost" key={index}>
-                            {page.label}
-                        </Button>
-                    ) : (
-                        <StyledLink to={page.link} base="bold" hover="subtle" key={index}>
-                            {page.label}
-                        </StyledLink>
-                    );
-                })}
-            </nav>
-        ),
+        () =>
+            pages.map((page, index: number) => {
+                return (
+                    <StyledLink to={page.link} base={null} hover="subtle" key={index} onClick={() => setSidebar(false)}>
+                        {page.label}
+                    </StyledLink>
+                );
+            }),
         [mobileHeader]
     );
 
@@ -46,11 +58,14 @@ const Header: FC<HeaderProps> = ({ ...props }) => {
                 </StyledLink>
                 <div className={style.navigation}>
                     {mobileHeader ? (
-                        <Popover direction="bottom" content={navContent}>
-                            <Button variant="text" Icon={MenuIcon} />
-                        </Popover>
+                        <>
+                            <Button variant="text" Icon={MenuIcon} className={style.menuButton} onClick={() => setSidebar(!sidebarActive)} />
+                            <div className={style.sidebar} data-active={orUndefined(sidebarActive, '')} ref={ref}>
+                                {navContent}
+                            </div>
+                        </>
                     ) : (
-                        navContent
+                        <nav className={style.links}>{navContent}</nav>
                     )}
                 </div>
             </div>

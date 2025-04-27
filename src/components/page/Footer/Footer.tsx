@@ -4,13 +4,7 @@ import { Typography, Flex, Column, Row, StyledFooter, tokens, StyledLink } from 
 const Footer: FC = () => {
     return (
         <StyledFooter theme="dark">
-            <Flex
-                flex={{ base: 'row', xs: 'column' }}
-                gap={{ base: tokens.space.xl, xs: tokens.space.md }}
-                style={{marginBottom: tokens.space.sm}}
-                verticalAlign="start"
-                block
-            >
+            <Flex flex={{ base: 'row', xs: 'column' }} gap={{ base: tokens.space.xl, xs: tokens.space.md }} style={{ marginBottom: tokens.space.sm }} verticalAlign="start" block>
                 <Column align="start" block>
                     <Typography.Text>
                         <b>About</b>

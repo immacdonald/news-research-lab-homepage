@@ -1,11 +1,11 @@
 import 'phantom-library/styles';
-import './styles/core/index.scss';
-import React from 'react';
+import './styles/index.module.scss';
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './App';
 
 createRoot(document.getElementById('root')!).render(
-    <React.StrictMode>
+    <StrictMode>
         <App />
-    </React.StrictMode>
+    </StrictMode>
 );

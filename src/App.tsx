@@ -10,7 +10,7 @@ const RoutedApp: FC = () => {
 
     return (
         <StyledApp rootId="root" fillViewport>
-            <Header inline hasBackground dynamicSettings={{ enabled: true, hasBackground: true, inline: false }} />
+            <Header hasBackground />
             <Outlet />
             <Footer />
         </StyledApp>
