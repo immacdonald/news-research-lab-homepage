@@ -1,5 +1,5 @@
 import { Fragment, useMemo, type FC } from 'react';
-import { Column, Heading, orUndefined, Row, Section, StyledImage, StyledLink, tokens, Typography } from 'phantom-library';
+import { Column, Flex, Heading, orUndefined, Row, Section, StyledImage, StyledLink, tokens, Typography } from 'phantom-library';
 import { newsGraphDark, PortraitAlexanderNwala, PortraitGanganiAriyarathne, PortraitGreatnessEmmanuelKing, PortraitIsuruAriyarathne, PotraitIanMacDonald } from '@assets';
 import { Layout } from '@components/Layout';
 import style from './View.module.scss';
@@ -25,13 +25,15 @@ const Home: FC = () => {
                 name: 'Ian MacDonald',
                 image: PotraitIanMacDonald,
                 link: 'https://ian-macdonald.com',
-                status: 'Undergraduate Student'
+                status: 'Lab Alumni',
+                text: 'Software Engineer'
             },
             {
                 name: 'Greatness Emmanuel-King',
                 image: PortraitGreatnessEmmanuelKing,
                 link: 'https://www.linkedin.com/in/greatness-emmanuel-king-9915b5217/',
-                status: 'Lab Alumni'
+                status: 'Lab Alumni',
+                text: 'Data Engineer @ Microsoft'
             }
         ],
         []
@@ -106,14 +108,19 @@ const Home: FC = () => {
                                 </Typography.Text>
                                 <Column gap={tokens.space.lg} style={orUndefined(index < 2, { marginBottom: tokens.space.layout.xs })}>
                                     {groupStudents.map((student, index) => (
-                                        <Row key={index} align="start" gap={tokens.space.md} style={{ marginTop: tokens.space.md }}>
+                                        <Flex flex={{base: 'row', xs: 'column'}} key={index} align="start" gap={tokens.space.md} style={{ marginTop: tokens.space.md }} block>
                                             <StyledImage image={student.image} alt={student.name} round maxWidth={imageSize} />
-                                            <Heading size="minor">
-                                                <StyledLink to={student.link} external base={null} hover="underline">
-                                                    {student.name}
-                                                </StyledLink>
-                                            </Heading>
-                                        </Row>
+                                            <Column align="start">
+                                                <Heading size="minor">
+                                                    <StyledLink to={student.link} external base={null} hover="underline">
+                                                        {student.name}
+                                                    </StyledLink>
+                                                </Heading>
+                                                {student.text && <Typography.Paragraph>
+                                                    {student.text}
+                                                </Typography.Paragraph>}
+                                            </Column>
+                                        </Flex>
                                     ))}
                                 </Column>
                             </Fragment>
